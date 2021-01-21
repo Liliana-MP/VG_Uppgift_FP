@@ -11,23 +11,41 @@ public class Main {
     public static void main(String[] args) {
 
         ElfFactory elfFactory = new ElfFactory();
+        String input;
+        int choice;
 
-        String input = JOptionPane.showInputDialog(null, "Skriv en nisses namn");
-        Elf elf = elfFactory.search(input);
+        while (true) {
 
-        if (elf != null) {
-            List<Elf> allSubordinates = elfFactory.getAllSubordinates(elf);
-
-            StringBuilder allSubordinatesNames = new StringBuilder();
-
-            for (Elf e : allSubordinates) {
-                allSubordinatesNames.append(e.getName()).append("\n");
+            input = JOptionPane.showInputDialog(null, "Skriv en nisses namn");
+            if (input == null) {
+                System.exit(0);
             }
 
-            JOptionPane.showMessageDialog(null, "--- Alla " + input + "s underordnade ---\n" + allSubordinatesNames.toString());
+            Elf elf = elfFactory.search(input);
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Nissen du söker efter har fått sparken");
+            if (elf != null) {
+                List<Elf> allSubordinates = elfFactory.getAllSubordinates(elf);
+
+                StringBuilder allSubordinatesNames = new StringBuilder();
+
+                for (Elf e : allSubordinates) {
+                    allSubordinatesNames.append(e.getName()).append("\n");
+                }
+
+                JOptionPane.showMessageDialog(null, "--- Alla " + input + "s underordnade ---\n" + allSubordinatesNames.toString());
+                choice =JOptionPane.showConfirmDialog(null, "Vill du söka igen?","Tomteverkstad", JOptionPane.YES_NO_OPTION);
+                if (choice == 1){
+                    System.exit(0);
+                }
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Nissen du söker efter har fått sparken");
+                choice = JOptionPane.showConfirmDialog(null, "Vill du söka igen?","Tomteverkstad", JOptionPane.YES_NO_OPTION);
+                if (choice == 1){
+                    System.exit(0);
+                }
+            }
         }
 
 

@@ -65,13 +65,11 @@ public class ElfFactory {
 
     }
 
-
     public Elf search(String elfName) {
         if (allElves.stream().anyMatch(e -> e.getName().equalsIgnoreCase(elfName))) {
             return allElves.stream().filter(e -> e.getName().equalsIgnoreCase(elfName)).findAny().get();
         }
         return null;
-
     }
 
     public List<Elf> getAllSubordinates(Elf elf) {
@@ -84,9 +82,7 @@ public class ElfFactory {
     public void saveSubordinatesToList(Elf elf, List<Elf> subordinatesList) {
         if (!elf.getSubordinatesList().isEmpty()) {
             subordinatesList.addAll(elf.getSubordinatesList());
-            /*for (Elf e : elf.getSubordinatesList()) {
-                saveSubordinatesToList(e, subordinatesList);
-            }*/
+
 
             elf.getSubordinatesList().forEach(e -> saveSubordinatesToList(e, subordinatesList));
         }
