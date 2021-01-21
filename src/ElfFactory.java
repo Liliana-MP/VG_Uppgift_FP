@@ -83,7 +83,6 @@ public class ElfFactory {
         if (!elf.getSubordinatesList().isEmpty()) {
             subordinatesList.addAll(elf.getSubordinatesList());
 
-
             elf.getSubordinatesList().forEach(e -> saveSubordinatesToList(e, subordinatesList));
         }
     }
